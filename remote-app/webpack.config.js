@@ -10,7 +10,7 @@ const config = (env = 'client') => {
 
   const output = {
     publicPath: `http://localhost:${port}/`,
-    filename: '[name]-[hash].js',
+    filename: '[name]-[contenthash].js',
     path: path.join(__dirname, 'dist', env),
   };
 
