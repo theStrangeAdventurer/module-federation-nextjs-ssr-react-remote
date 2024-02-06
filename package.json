@@ -1,0 +1,26 @@
+{
+  "name": "nextjs-react",
+  "version": "1.0.0",
+  "description": "Module Federation with NextJS and Client-Side React Remotes",
+  "private": true,
+  "workspaces": [
+    "host-app",
+    "remote-app"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "pnpm --parallel --filter nextjs-react_* run dev",
+    "start:host": "pnpm --filter nextjs-react_host-app run dev",
+    "remote:build": "pnpm --filter nextjs-react_remote-app run build",
+    "remote:serve:client": "pnpm --filter nextjs-react_remote-app run serve:client",
+    "remote:serve:server": "pnpm --filter nextjs-react_remote-app run serve:server",
+    "e2e:ci": "pnpm start & wait-on http-get://localhost:3000/ && npx cypress run --config-file ../cypress-e2e/config/cypress.config.ts --config '{\"supportFile\": \"../cypress-e2e/support/e2e.ts\"}' --spec \"./e2e/runAll.cy.ts\" --browser=chrome"
+  },
+  "keywords": [],
+  "author": "rahulteja-dev",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "7.2.0"
+  }
+}
