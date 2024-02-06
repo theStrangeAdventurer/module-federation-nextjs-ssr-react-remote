@@ -6,7 +6,10 @@ import { performReload } from '@module-federation/node/utils';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    await revalidate().then(performReload);
+    await revalidate().then(shouldReload => {
+      console.log("performReload", shouldReload);
+      performReload(shouldReload);
+    });
 
     const initialProps = await Document.getInitialProps(ctx);
 
